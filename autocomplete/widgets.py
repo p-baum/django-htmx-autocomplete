@@ -34,7 +34,8 @@ class Autocomplete(Widget):
 
     """
 
-    template_name = "autocomplete/component.html"
+    #template_name = "autocomplete/component.html"
+    template_name = "core/widgets/autocomplete_text.html"
 
     def __init__(
         self,

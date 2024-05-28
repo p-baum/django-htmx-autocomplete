@@ -1,6 +1,6 @@
 {% load autocomplete %}
 <div
-    class="results {{ show|yesno:'show,' }}"
+    class="results {{ show|yesno:'show,' }} flex flex-col"
     id="{{ component_id }}__items"
     role="listbox"
     {% if multiselect %}

@@ -138,7 +138,7 @@ class HTMXAutoComplete(View):
     indicator = False
 
     # The minimum search length to perform a search and show the dropdown.
-    minimum_search_length = 3
+    minimum_search_length = 1
 
     # The maximum number of search results to return to the frontend, or None for all
     max_results = None
@@ -476,6 +476,7 @@ class HTMXAutoComplete(View):
         """
         data = QueryDict(request.body)
         items_selected = data.getlist(self.name)
+        print(f"{items_selected=}")
         override_component_id = data.get("component_id", "")
         component_name = data.get("name", self.name)
 
