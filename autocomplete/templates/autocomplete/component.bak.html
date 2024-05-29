@@ -6,7 +6,7 @@ This is the main component template that creates the basic HTML structure.
 <div class="phac_aspc_form_autocomplete_focus_ring {{ disabled|yesno:'disabled,' }}">
   <div
     id="{{ component_id }}__container"
-    class="phac_aspc_form_autocomplete"
+    class="phac_aspc_form_autocomplete autocomplete-container"
   >
     {% comment %} Hidden input elements used to maintain the component's state {% endcomment %}
     {% comment %} and used when submitting forms {% endcomment %}
@@ -75,8 +75,6 @@ This is the main component template that creates the basic HTML structure.
     (function () {
         const { componentid, css, js, toggleurl } = document.currentScript.dataset;
         {% if not disabled %}
-        {% comment %} If component is disabled no JS is required {% endcomment %}
-
         // Add click handler on container to set focus on <input> box
         document.querySelector(`#${componentid}__container`).addEventListener(
             'mousedown',

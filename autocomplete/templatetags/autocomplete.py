@@ -60,6 +60,21 @@ def use_string(context, name, strings):
     ).render(context.flatten())
 
 
+def get_component_url(name, selected=None):
+    options_selected = (
+        ",".join([str(x) for x in selected]) if selected is not None else ""
+    )
+
+    url = urls.reverse(name, kwargs={"method": "component"})
+    parameter = urlencode({name: options_selected})
+    return f"{url}?{parameter}"
+
+
+@register.simple_tag
+def autocomplete_url(name, selected=None):
+    return get_component_url(name, selected=selected)
+
+
 @register.simple_tag
 def autocomplete(name, selected=None):
     """
@@ -75,13 +90,8 @@ def autocomplete(name, selected=None):
                     Defaults to None
 
     """
-    options_selected = (
-        ",".join([str(x) for x in selected]) if selected is not None else ""
-    )
 
-    url = urls.reverse(name, kwargs={"method": "component"})
-    parameter = urlencode({name: options_selected})
-    get_url = f"{url}?{parameter}"
+    get_url = get_component_url(name, selected=selected)
 
     return format_html(
         (
